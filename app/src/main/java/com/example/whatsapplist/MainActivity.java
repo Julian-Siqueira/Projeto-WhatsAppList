@@ -1,6 +1,7 @@
 package com.example.whatsapplist;
 
 import android.os.Bundle;
+import android.view.Window;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        Window window = this.getWindow();
+        window.setStatusBarColor(this.getResources().getColor(R.color.green_dark));
 
         recycler_users = findViewById(R.id.recycle_users);
         recycler_users.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false));
