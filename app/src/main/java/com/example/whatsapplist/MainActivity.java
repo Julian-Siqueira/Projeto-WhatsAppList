@@ -19,6 +19,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recycler_users;
+    private List<User> userList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,13 @@ public class MainActivity extends AppCompatActivity {
         recycler_users = findViewById(R.id.recycle_users);
         recycler_users.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false));
         recycler_users.setHasFixedSize(true);
-        //recycler_users.setAdapter();
+        AdapterUser adapterUser = new AdapterUser(userList);
+        recycler_users.setAdapter(adapterUser);
+        Users();
+    }
+
+    public void Users(){
+        User user1 = new User(R.drawable.usuario1, "Ricardo", "Good Everning", "10:33", "2");
+        userList.add(user1);
     }
 }
