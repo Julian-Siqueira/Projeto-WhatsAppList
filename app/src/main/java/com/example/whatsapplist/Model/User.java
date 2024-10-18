@@ -16,6 +16,16 @@ public class User {
         this.countMessage = countMessage;
     }
 
+    public User(int photo, String name, String message, String hour) {
+        this.photo = photo;
+        this.name = name;
+        this.message = message;
+        this.hour = hour;
+        this.countMessage = "";
+    }
+
+
+
     public int getPhoto() {
         return photo;
     }
@@ -53,6 +63,6 @@ public class User {
     }
 
     public void setCountMessage(String countMessage) {
-        this.countMessage = countMessage;
+            this.countMessage = countMessage;
     }
 }
