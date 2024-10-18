@@ -1,5 +1,6 @@
 package com.example.whatsapplist.Adapter;
 
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,8 +42,11 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.UserViewHolder
         holder.name.setText(userList.get(position).getName());
         holder.message.setText(userList.get(position).getMessage());
         holder.hour.setText(userList.get(position).getHour());
-        holder.countMessage.setText(userList.get(position).getCountMessage());
-
+        if (userList.get(position).getCountMessage() != "") {
+            holder.countMessage.setText(userList.get(position).getCountMessage());
+            holder.countMessage.setVisibility(View.VISIBLE);
+            holder.message.setTypeface(Typeface.DEFAULT_BOLD);
+        }
     }
 
     @Override
