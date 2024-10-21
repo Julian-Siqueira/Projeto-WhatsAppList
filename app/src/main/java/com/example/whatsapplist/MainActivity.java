@@ -1,7 +1,9 @@
 package com.example.whatsapplist;
 
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,9 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.whatsapplist.Adapter.AdapterUser;
 import com.example.whatsapplist.Model.User;
+import com.example.whatsapplist.RecyclerItemClickListener.RecyclerItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,6 +45,40 @@ public class MainActivity extends AppCompatActivity {
         AdapterUser adapterUser = new AdapterUser(userList);
         recycler_users.setAdapter(adapterUser);
         Users();
+
+        //Click event on RecycleView items
+        recycler_users.addOnItemTouchListener(new RecyclerItemClickListener(
+                getApplicationContext(),
+                recycler_users,
+                new RecyclerItemClickListener.OnItemClickListener() {
+
+            private User user;
+            @Override
+            public void onItemClick(View view, int position) {
+                user = userList.get(position);
+                Toast.makeText(getApplicationContext(),
+                        "Usuário: "+user.getName(),
+                        Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+                user = userList.get(position);
+                String userCount = user.getCountMessage();
+
+                if (!Objects.equals(userCount, "")) {
+                    Toast.makeText(getApplicationContext(),
+                            "Mensagens novas: "+userCount,
+                            Toast.LENGTH_LONG).show();
+                }
+
+                else{
+                    Toast.makeText(getApplicationContext(),
+                            "Sem Mensagens!",
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        }));
     }
 
     public void Users(){
